@@ -3,3 +3,6 @@
 /.idea/php.xml
 /.idea/sample-ecommerce-du.iml
 /.idea/vcs.xml
+
+# architecture
+/architecture/plantuml.jar

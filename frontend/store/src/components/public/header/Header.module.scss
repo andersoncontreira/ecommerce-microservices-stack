@@ -1,0 +1,26 @@
+.customNavbar {
+  background: #3b5d50 !important;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .navbarBrand {
+    font-size: 32px;
+    font-weight: 600;
+    & > span {
+      opacity: .4;
+    }
+  }
+
+  .navbarToggler {
+    border-color: transparent;
+  }
+}
+
+
+
+
+
+.custom-navbar .navbar-toggler:active, .custom-navbar .navbar-toggler:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
