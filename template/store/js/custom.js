@@ -1,4 +1,4 @@
-(function() {
+(function(window, document) {
 	'use strict';
 
 	var tinyslider = function() {
@@ -23,7 +23,7 @@
 	};
 	tinyslider();
 
-	
+
 
 
 	var sitePlusMinus = function() {
@@ -63,11 +63,11 @@
 
 	        quantityAmount.value = value;
 	    }
-	    
+
 	    init();
-		
+
 	};
 	sitePlusMinus();
 
 
-})()
+})(window, document);

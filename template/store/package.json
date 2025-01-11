@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "scripts": {
+    "lint": "npx eslint -c eslint.config.mjs .",
+    "lint:fix": "npx eslint -c eslint.config.mjs --fix ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "eslint": "^9.18.0"
+  }
+}
