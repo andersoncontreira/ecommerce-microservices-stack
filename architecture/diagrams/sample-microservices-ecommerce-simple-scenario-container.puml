@@ -1,0 +1,132 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+'AddElementTag("v1.0", $borderColor="#f00")
+'AddElementTag("v1.1", $fontColor="#d73027")
+'AddElementTag("backup", $fontColor="orange")
+'
+'AddRelTag("backup", $textColor="orange", $lineColor="orange", $lineStyle = DashedLine())
+'
+Person(user, "Customer", "People that need products")
+Person(admin, "Administrator", "People that administrates the system")
+
+Container(spa, "SPA", "Frontend, React", "The main interface that the customer interacts")
+'Container(mobile, "Mobile App", "Xamarin", "The main interface that the customer interacts")
+
+'-----------------------------------------
+'BFFS
+'-----------------------------------------
+Container(spa_bff, "SPA BFF", "BFF, Nest, GraphQL", "The main gateway for the API")
+'Container(mobile_bff, "Mobile BFF", "BFF, Nest, GraphQL", "The main gateway for the API")
+
+'-----------------------------------------
+'APIS
+'-----------------------------------------
+'Products and 'Products Review
+Container(products_api, "Products API", "Typescript", "Handles all products interactions")
+Container(products_cache_manager, "Products Cache Manager", "Typescript", "Manage all the cached products data")
+
+'Container(reviews_api, "Reviews API", "Typescript", "Handles all Reviews interactions")
+'Cart
+Container(cart_api, "Cart API", "Typescript", "Handles all Cart interactions")
+'Orders
+Container(orders_api, "Orders API", "Typescript", "Handles all Orders from the customers")
+'Customers
+Container(customers_api, "Customers API", "Typescript", "Handles all Customers interactions")
+'Users
+Container(users_api, "Users API", "Typescript", "Handles all users interactions (Admins)")
+'Shipping
+Container(shipping_api, "Shipping API", "Typescript", "Handles all Shipping interactions")
+Container(shipping_cache_manager, "Shipping Cache Manager", "Typescript", "Manage all the cached shipping data")
+'Payments
+Container(payments_api, "Payments API", "Typescript", "Handles all Customers payment interactions")
+'Auth
+Container(auth_api, "Auth API", "Typescript, keyClock", "Handles all customers and users authentication interactions")
+'-----------------------------------------
+'API Gateway level
+'-----------------------------------------
+
+'-----------------------------------------
+'Cache level
+'-----------------------------------------
+'Cache for BFFS
+ContainerDb(spa_bff_cache, "SPA BFF Cache", "Redis", "Store a cache for the APIs data")
+'ContainerDb(mobile_bff_cache, "Mobile BFF Cache", "Redis", "Store a cache for the APIs data")
+
+'Mid level db cache
+ContainerDb(products_cache, "Products Cache", "Redis", "Store a cache for the APIs data")
+ContainerDb(shipping_cache, "Shipping Cache", "Redis", "Store a cache for the APIs data")
+
+'-----------------------------------------
+'Databases level
+'-----------------------------------------
+'Shared db
+ContainerDb(shared_db, "Shared Database", "PostgresSQL", "Holds all the data")
+'It Stores order shipping, shipping calculations, delivery tracking, etc.
+ContainerDb(shipping_db, "Shipping Database", "Mongo DB", "Holds all the data")
+
+'-----------------------------------------
+'Storage level
+'-----------------------------------------
+Container(archive, "Archive", "Audit logging", "Stores 5 years", $tags="backup")
+
+Rel(user, spa, "Uses", "https")
+'Rel(user, mobile, "Uses", "https")
+
+Rel(admin, spa, "Uses", "https")
+'Rel(admin, mobile, "Uses", "https")
+
+Rel(spa, spa_bff, "Make API calls to", "https/graphQL")
+'Rel(mobile, mobile_bff, "Make API calls to", "https/graphQL")
+
+Rel_L(spa_bff, spa_bff_cache, "Consume cached data")
+'Rel_R(mobile_bff, mobile_bff_cache, "Consume cached data")
+
+Rel(spa_bff, products_api, "make APIS calls to")
+'Rel(spa_bff, reviews_api, "make APIS calls to")
+Rel(spa_bff, orders_api, "make APIS calls to")
+Rel(spa_bff, customers_api, "make APIS calls to")
+Rel(spa_bff, shipping_api, "make APIS calls to")
+Rel(spa_bff, payments_api, "make APIS calls to")
+Rel(spa_bff, cart_api, "make APIS calls to")
+Rel(spa_bff, auth_api, "make APIS calls to")
+
+'Rel(mobile_bff, products_api, "make APIS calls to")
+'Rel(mobile_bff, reviews_api, "make APIS calls to")
+'Rel(mobile_bff, orders_api, "make APIS calls to")
+'Rel(mobile_bff, customers_api, "make APIS calls to")
+'Rel(mobile_bff, shipping_api, "make APIS calls to")
+'Rel(mobile_bff, payments_api, "make APIS calls to")
+'Rel(mobile_bff, cart_api, "make APIS calls to")
+'Rel(mobile_bff, auth_api, "make APIS calls to")
+
+Rel_R(spa_bff, archive, "Writes", "messages", $tags="backup")
+'Rel_L(mobile_bff, archive, "Writes", "messages", $tags="backup")
+
+Rel_U(products_cache_manager, shared_db, "Read the data")
+Rel_U(products_cache_manager, products_cache, "Sync the data")
+
+Rel_U(shipping_cache_manager, shipping_db, "Read the data")
+Rel_U(shipping_cache_manager, shipping_cache, "Sync the data")
+
+'Cache level
+Rel(products_api, products_cache, "Reads cached data")
+Rel(shipping_api, shipping_cache, "Reads cached data")
+
+'Database
+Rel(products_api, shared_db, "Reads/Writes")
+Rel(orders_api, shared_db, "Reads/Writes")
+Rel(cart_api, shared_db, "Reads/Writes")
+
+Rel(auth_api, shared_db, "Reads/Writes")
+Rel(customers_api, shared_db, "Reads/Writes")
+Rel(users_api, shared_db, "Reads/Writes")
+'Rel(reviews_api, shared_db, "Reads/Writes")
+Rel(shipping_api, shipping_db, "Reads/Writes")
+Rel(payments_api, shared_db, "Reads/Writes")
+
+
+
+
+SHOW_LEGEND()
+@enduml
