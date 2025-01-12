@@ -1,0 +1,39 @@
+/*
+* Template Name: UntreeStore
+* Template Author: Untree.co
+* Author URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/
+@use "./variables" as v;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 28px;
+  color: v.$gray-primary;
+  font-size: 14px;
+  background-color: v.$bg-color;
+}
+
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+  color: v.$green-dark;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: v.$green-dark;
+  text-decoration: none;
+}
+
+a.more {
+  font-weight: 600;
+}

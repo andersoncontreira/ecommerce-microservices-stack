@@ -14,10 +14,12 @@ import 'font-awesome/css/font-awesome.min.css'
 import 'font-awesome/fonts/fontawesome-webfont.woff';
 
 // CSS
+import '../src/assets/css/style.scss';
 
 
 // Components
 import Header from "./components/public/header/Header.tsx";
+import Hero from "./components/public/sections/hero/Hero.tsx";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,6 +27,7 @@ function App() {
   return (
     <>
         <Header />
+        <Hero />
       {/*<div>*/}
       {/*  <a href="https://vite.dev" target="_blank">*/}
       {/*    <img src={viteLogo} className="logo" alt="Vite logo" />*/}
