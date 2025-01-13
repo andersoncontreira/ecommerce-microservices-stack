@@ -1,0 +1,42 @@
+{
+  "pages": [
+    {
+      "id": "1",
+      "title": "home",
+      "link": "/",
+      "status": "active",
+      "content": "<p>Hello</p>"
+    },
+    {
+      "id": "2",
+      "title": "Sobre",
+      "link": "/about-us",
+      "status": "active",
+      "content": "<p>Hello</p>"
+    },
+    {
+      "id": "3",
+      "title": "Contato",
+      "link": "/contact",
+      "status": "active",
+      "content": "<p>Hello</p>"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Product 1",
+      "price": 100
+    },
+    {
+      "id": "2",
+      "name": "Product 2",
+      "price": 200
+    },
+    {
+      "id": "3",
+      "name": "Product 3",
+      "price": 300
+    }
+  ]
+}

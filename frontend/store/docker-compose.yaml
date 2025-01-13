@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  api-mock:
+    container_name: api-mock
+    build:
+      context: .
+      dockerfile: ./docker/api-mock/Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - ecommerce-common
+  store:
+    container_name: store
+    build:
+      context: .
+      dockerfile: ./docker/store/Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - ecommerce-common
+    links:
+      - api-mock
+    volumes:
+      - ./:/store
+      - /store/node_modules
+networks:
+  ecommerce-common:
+    driver: bridge

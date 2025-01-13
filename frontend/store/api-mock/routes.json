@@ -1,0 +1,7 @@
+{
+  "/v1/pages": "/pages",
+  "/v1/pages/:id": "/pages/:id",
+  "/v1/products": "/products",
+  "/v1/products/:id": "/products/:id",
+  "/v1/*": "/$1"
+}
