@@ -1,0 +1,5 @@
+image:
+  # repository: your-docker-repo/your-image
+  repository: store
+  tag: latest
+  pullPolicy: IfNotPresent
