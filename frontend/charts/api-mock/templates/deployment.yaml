@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "api-mock.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "api-mock.name" . }}
+    helm.sh/chart: {{ include "api-mock.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "api-mock.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "api-mock.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          startupProbe:
+            failureThreshold: 12
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            timeoutSeconds: 5
+            httpGet:
+              port: http
+              path: /actuator/health/readiness
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 0
+            periodSeconds: 20
+            timeoutSeconds: 10
+            httpGet:
+              port: http
+              path: /actuator/health/liveness
+          readinessProbe:
+            failureThreshold: 2
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            timeoutSeconds: 5
+            httpGet:
+              port: http
+              path: /actuator/health/readiness
+

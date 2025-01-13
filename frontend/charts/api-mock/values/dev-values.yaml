@@ -1,0 +1,5 @@
+image:
+  # repository: your-docker-repo/your-image
+  repository: api-mock
+  tag: latest
+  pullPolicy: IfNotPresent
