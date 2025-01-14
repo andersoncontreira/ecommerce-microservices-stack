@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "json-server.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "json-server.name" . }}
+    helm.sh/chart: {{ include "json-server.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "json-server.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "json-server.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: json-server
+          image: vimagick/json-server
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+          args:
+            - --watch
+            - /data/db.json
+          volumeMounts:
+            - mountPath: /data
+              name: json-data
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+{{/*          startupProbe:*/}}
+{{/*            failureThreshold: 12*/}}
+{{/*            initialDelaySeconds: 0*/}}
+{{/*            periodSeconds: 10*/}}
+{{/*            timeoutSeconds: 5*/}}
+{{/*            httpGet:*/}}
+{{/*              port: http*/}}
+{{/*              path: /*/}}
+{{/*          livenessProbe:*/}}
+{{/*            failureThreshold: 3*/}}
+{{/*            initialDelaySeconds: 0*/}}
+{{/*            periodSeconds: 20*/}}
+{{/*            timeoutSeconds: 10*/}}
+{{/*            httpGet:*/}}
+{{/*              port: http*/}}
+{{/*              path: /*/}}
+{{/*          readinessProbe:*/}}
+{{/*            failureThreshold: 2*/}}
+{{/*            initialDelaySeconds: 0*/}}
+{{/*            periodSeconds: 10*/}}
+{{/*            timeoutSeconds: 5*/}}
+{{/*            httpGet:*/}}
+{{/*              port: http*/}}
+{{/*              path: /*/}}
+      volumes:
+        - name: json-data
+          configMap:
+            name: json-server-json-config
+
+

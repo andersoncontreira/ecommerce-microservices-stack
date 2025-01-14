@@ -1,4 +1,7 @@
 {
+  "health": {
+    "status": "ok"
+  },
   "pages": [
     {
       "id": "1",

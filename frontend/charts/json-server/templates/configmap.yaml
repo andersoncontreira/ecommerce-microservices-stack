@@ -1,0 +1,58 @@
+apiVersion: v1
+data:
+  db.json: |
+    {
+      "health": {
+        "status": "ok"
+      },
+      "pages": [
+        {
+          "id": "1",
+          "title": "home",
+          "link": "/",
+          "status": "active",
+          "content": "<p>Hello</p>"
+        },
+        {
+          "id": "2",
+          "title": "Sobre",
+          "link": "/about-us",
+          "status": "active",
+          "content": "<p>Hello</p>"
+        },
+        {
+          "id": "3",
+          "title": "Contato",
+          "link": "/contact",
+          "status": "active",
+          "content": "<p>Hello</p>"
+        }
+      ],
+      "products": [
+        {
+          "id": "1",
+          "name": "Product 1",
+          "price": 100
+        },
+        {
+          "id": "2",
+          "name": "Product 2",
+          "price": 200
+        },
+        {
+          "id": "3",
+          "name": "Product 3",
+          "price": 300
+        }
+      ]
+    }
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"db.json":"{\n  \"health\": {\n    \"status\": \"ok\"\n  },\n  \"pages\": [\n    {\n      \"id\": \"1\",\n      \"title\": \"home\",\n      \"link\": \"/\",\n      \"status\": \"active\",\n      \"content\": \"\u003cp\u003eHello\u003c/p\u003e\"\n    },\n    {\n      \"id\": \"2\",\n      \"title\": \"Sobre\",\n      \"link\": \"/about-us\",\n      \"status\": \"active\",\n      \"content\": \"\u003cp\u003eHello\u003c/p\u003e\"\n    },\n    {\n      \"id\": \"3\",\n      \"title\": \"Contato\",\n      \"link\": \"/contact\",\n      \"status\": \"active\",\n      \"content\": \"\u003cp\u003eHello\u003c/p\u003e\"\n    }\n  ],\n  \"products\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Product 1\",\n      \"price\": 100\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Product 2\",\n      \"price\": 200\n    },\n    {\n      \"id\": \"3\",\n      \"name\": \"Product 3\",\n      \"price\": 300\n    }\n  ]\n}\n"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":"2025-01-14T01:02:35Z","name":"json-server-json-config","namespace":"default","resourceVersion":"28713","uid":"a6383114-0893-4e51-b518-8d1baf8fe8c9"}}
+  creationTimestamp: "2025-01-14T01:02:35Z"
+  name: json-server-json-config
+  namespace: default
+  resourceVersion: "28895"
+  uid: a6383114-0893-4e51-b518-8d1baf8fe8c9

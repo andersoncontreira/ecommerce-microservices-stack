@@ -1,0 +1,152 @@
+---
+# Source: json-server/templates/configmap.yaml
+apiVersion: v1
+data:
+  db.json: |
+    {
+      "health": {
+        "status": "ok"
+      },
+      "pages": [
+        {
+          "id": "1",
+          "title": "home",
+          "link": "/",
+          "status": "active",
+          "content": "<p>Hello</p>"
+        },
+        {
+          "id": "2",
+          "title": "Sobre",
+          "link": "/about-us",
+          "status": "active",
+          "content": "<p>Hello</p>"
+        },
+        {
+          "id": "3",
+          "title": "Contato",
+          "link": "/contact",
+          "status": "active",
+          "content": "<p>Hello</p>"
+        }
+      ],
+      "products": [
+        {
+          "id": "1",
+          "name": "Product 1",
+          "price": 100
+        },
+        {
+          "id": "2",
+          "name": "Product 2",
+          "price": 200
+        },
+        {
+          "id": "3",
+          "name": "Product 3",
+          "price": 300
+        }
+      ]
+    }
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"db.json":"{\n  \"health\": {\n    \"status\": \"ok\"\n  },\n  \"pages\": [\n    {\n      \"id\": \"1\",\n      \"title\": \"home\",\n      \"link\": \"/\",\n      \"status\": \"active\",\n      \"content\": \"\u003cp\u003eHello\u003c/p\u003e\"\n    },\n    {\n      \"id\": \"2\",\n      \"title\": \"Sobre\",\n      \"link\": \"/about-us\",\n      \"status\": \"active\",\n      \"content\": \"\u003cp\u003eHello\u003c/p\u003e\"\n    },\n    {\n      \"id\": \"3\",\n      \"title\": \"Contato\",\n      \"link\": \"/contact\",\n      \"status\": \"active\",\n      \"content\": \"\u003cp\u003eHello\u003c/p\u003e\"\n    }\n  ],\n  \"products\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Product 1\",\n      \"price\": 100\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Product 2\",\n      \"price\": 200\n    },\n    {\n      \"id\": \"3\",\n      \"name\": \"Product 3\",\n      \"price\": 300\n    }\n  ]\n}\n"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":"2025-01-14T01:02:35Z","name":"json-server-json-config","namespace":"default","resourceVersion":"28713","uid":"a6383114-0893-4e51-b518-8d1baf8fe8c9"}}
+  creationTimestamp: "2025-01-14T01:02:35Z"
+  name: json-server-json-config
+  namespace: default
+  resourceVersion: "28895"
+  uid: a6383114-0893-4e51-b518-8d1baf8fe8c9
+---
+# Source: json-server/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+    name: json-server-release
+    labels:
+        app.kubernetes.io/name: json-server
+        helm.sh/chart: json-server-chat
+        app.kubernetes.io/instance: json-server-release
+        app.kubernetes.io/managed-by: Helm
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+      name: http
+      nodePort: 30003
+  selector:
+    app: json-server
+---
+# Source: json-server/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: json-server-release
+  labels:
+    app.kubernetes.io/name: json-server
+    helm.sh/chart: json-server-chat
+    app.kubernetes.io/instance: json-server-release
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: json-server
+      release: json-server-release
+  template:
+    metadata:
+      labels:
+        app: json-server
+        release: json-server-release
+    spec:
+      containers:
+        - name: json-server
+          image: vimagick/json-server
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+          args:
+            - --watch
+            - /data/db.json
+          volumeMounts:
+            - mountPath: /data
+              name: json-data
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      volumes:
+        - name: json-data
+          configMap:
+            name: json-server-json-config

@@ -10,6 +10,8 @@ fi
 
 # Loading images
 echo 'Loading images to Minikube...'
+echo 'vimagick/json-server'
+minikube image load vimagick/json-server
 echo 'api-mock:latest'
 minikube image load api-mock:latest
 echo 'store:latest'

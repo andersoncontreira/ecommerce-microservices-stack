@@ -25,17 +25,11 @@ else
     fi
 fi
 
-# kubectl create configmap json-config --from-file=db.json
-
-# Store
-# kubectl apply -f ../charts/store/templates/deployment.yaml
-# kubectl apply -f ../charts/store/templates/service.yaml
-# kubectl apply -f ../charts/store/templates/ingress.yaml
-
-# API Mock
-# kubectl apply -f ../charts/api-mock/templates/deployment.yaml
-# kubectl apply -f ../charts/api-mock/templates/service.yaml
-
 # Helm for Store
 kubectl apply -f ./k8s/store-manifests.yaml
+
+# Helm for API Mock
 kubectl apply -f ./k8s/api-mock-manifests.yaml
+
+# Helm for JSON server
+kubectl apply -f ./k8s/json-server-manifests.yaml
