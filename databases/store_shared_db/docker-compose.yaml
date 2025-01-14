@@ -1,0 +1,34 @@
+services:
+  store-shared-db:
+    image: postgres:13
+    container_name: store-shared-db
+    environment:
+      POSTGRES_USER: store_user
+      POSTGRES_PASSWORD: store_password
+      POSTGRES_DB: store_shared_db
+    ports:
+      - "5433:5432"
+    networks:
+      - ecommerce-common
+  flyway:
+    build:
+      context: .
+      dockerfile: ./docker/flyway/Dockerfile
+    container_name: store-flyway
+    depends_on:
+      - store-shared-db
+    environment:
+      # jdbc:postgresql://localhost:5433/store_shared_db
+      FLYWAY_URL: jdbc:postgresql://store-shared-db:5432/store_shared_db
+      FLYWAY_USER: store_user
+      FLYWAY_PASSWORD: store_password
+    # Isso muda a permissão da pasta (não usar)
+    #    volumes:
+    #      - ./flyway:/flyway/conf
+    #      - ./flyway/sql:/flyway/sql
+    command: -connectRetries=30 migrate
+    networks:
+      - ecommerce-common
+networks:
+  ecommerce-common:
+    driver: bridge
