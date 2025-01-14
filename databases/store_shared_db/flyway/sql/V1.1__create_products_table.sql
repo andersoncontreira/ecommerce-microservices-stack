@@ -5,5 +5,9 @@ CREATE TABLE store.products
     name        VARCHAR(255)   NOT NULL,
     description TEXT,
     price       DECIMAL(10, 2) NOT NULL,
-    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    status SMALLINT DEFAULT 1,
+    deleted BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP
 );
