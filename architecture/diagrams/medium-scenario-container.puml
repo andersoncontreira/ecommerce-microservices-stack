@@ -20,6 +20,11 @@ Container(spa_bff, "SPA BFF", "BFF, Nest, GraphQL", "The main gateway for the AP
 'Container(mobile_bff, "Mobile BFF", "BFF, Nest, GraphQL", "The main gateway for the API")
 
 '-----------------------------------------
+'API Gateway level
+'-----------------------------------------
+
+Container(api_gateway, "API Gateway", "Kong", "The main gateway for the API")
+'-----------------------------------------
 'APIS
 '-----------------------------------------
 'Products and 'Products Review
@@ -42,9 +47,6 @@ Container(shipping_cache_manager, "Shipping Cache Manager", "Typescript", "Manag
 Container(payments_api, "Payments API", "Typescript", "Handles all Customers payment interactions")
 'Auth
 Container(auth_api, "Auth API", "Typescript, keyClock", "Handles all customers and users authentication interactions")
-'-----------------------------------------
-'API Gateway level
-'-----------------------------------------
 
 '-----------------------------------------
 'Cache level
@@ -82,23 +84,18 @@ Rel(spa, spa_bff, "Make API calls to", "https/graphQL")
 Rel_L(spa_bff, spa_bff_cache, "Consume cached data")
 'Rel_R(mobile_bff, mobile_bff_cache, "Consume cached data")
 
-Rel(spa_bff, products_api, "make APIS calls to")
-'Rel(spa_bff, reviews_api, "make APIS calls to")
-Rel(spa_bff, orders_api, "make APIS calls to")
-Rel(spa_bff, customers_api, "make APIS calls to")
-Rel(spa_bff, shipping_api, "make APIS calls to")
-Rel(spa_bff, payments_api, "make APIS calls to")
-Rel(spa_bff, cart_api, "make APIS calls to")
-Rel(spa_bff, auth_api, "make APIS calls to")
+Rel(spa_bff, api_gateway, "Make API calls to", "https")
+'Rel(mobile_bff, api_gateway, "Make API calls to", "https")
 
-'Rel(mobile_bff, products_api, "make APIS calls to")
-'Rel(mobile_bff, reviews_api, "make APIS calls to")
-'Rel(mobile_bff, orders_api, "make APIS calls to")
-'Rel(mobile_bff, customers_api, "make APIS calls to")
-'Rel(mobile_bff, shipping_api, "make APIS calls to")
-'Rel(mobile_bff, payments_api, "make APIS calls to")
-'Rel(mobile_bff, cart_api, "make APIS calls to")
-'Rel(mobile_bff, auth_api, "make APIS calls to")
+Rel(api_gateway, products_api, "make APIS calls to")
+'Rel(api_gateway, reviews_api, "make APIS calls to")
+Rel(api_gateway, orders_api, "make APIS calls to")
+Rel(api_gateway, customers_api, "make APIS calls to")
+Rel(api_gateway, shipping_api, "make APIS calls to")
+Rel(api_gateway, payments_api, "make APIS calls to")
+Rel(api_gateway, cart_api, "make APIS calls to")
+Rel(api_gateway, auth_api, "make APIS calls to")
+
 
 Rel_R(spa_bff, archive, "Writes", "messages", $tags="backup")
 'Rel_L(mobile_bff, archive, "Writes", "messages", $tags="backup")

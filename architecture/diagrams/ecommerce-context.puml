@@ -10,7 +10,7 @@ Person(admin, "Administrator", "People that administrates the system")
 '-----------------------------------------
 'Sistemas
 '-----------------------------------------
-System(store, "Furni E-Commerce", "System that sells furniture")
+System(store, "Furni Store E-Commerce", "System that sells furniture")
 
 '-----------------------------------------
 'Sistemas externos
