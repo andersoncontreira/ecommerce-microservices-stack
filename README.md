@@ -1,7 +1,8 @@
-# Sample Ecommerce Deployable Unit
+# Sample Ecommerce Stack
 
 Este é um projeto que contém uma unidade implantável de amostra para uma aplicação de comércio eletrônico. É uma aplicação simples que permite aos usuários visualizar produtos, adicioná-los a um carrinho e finalizar a compra.
 
+> Nota: Eu preciso renomear o repositório do projeto para `sample-ecommerce-microservices-stack`
 ## Recursos do Projeto
 
 O projeto é dividido em diversas partes, o backend é composto por diversos serviços que fornecem a lógica de negócio e a persistência de dados para a aplicação.
@@ -41,7 +42,13 @@ Abaixo estão os recursos do projeto:
    - **Docker Compose**: [docker-compose](infra%2Fdocker-compose)
      - Orquestra os serviços do projeto em contêineres Docker.
    - **Kubernetes**: [kubernetes](infra%2Fkubernetes)
-     - Orquestra os serviços do projeto em um cluster Kubernetes. 
+     - Orquestra os serviços do projeto em um cluster Kubernetes.
+ - **Banco de Dados**:
+   - **PostgreSQL**: [postgresql](databases%2Fsql)
+     - Banco de dados relacional usado para armazenar os dados da aplicação.
  
+## Detalhes da Arquitetura
 
+A arquitetura do projeto é baseada em microsserviços, com cada serviço sendo responsável por uma parte específica da aplicação. Os serviços são implantados em contêineres Docker e orquestrados por Kubernetes.
 
+Para mais detalhes sobre a arquitetura do projeto, consulte a [documentação de arquitetura](architecture).
