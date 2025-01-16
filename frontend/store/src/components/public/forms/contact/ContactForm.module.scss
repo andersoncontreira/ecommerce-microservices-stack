@@ -1,0 +1,16 @@
+.service {
+  line-height: 1.5;
+
+  .serviceIcon {
+    border-radius: 10px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50px;
+    flex: 0 0 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: #3b5d50;
+    margin-right: 20px;
+    color: #ffffff;
+  }
+}

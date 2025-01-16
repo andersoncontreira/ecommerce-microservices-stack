@@ -1,0 +1,9 @@
+
+- https://dev.to/michaeljota/how-to-add-jest-into-your-vite-project-with-ts-5d21
+
+Remover coisas que não estão sendo usadas, 
+ou jogar tudo para um branch e refazer os passos que foram feitos aqui
+
+
+# Auth
+https://github.com/copilot/c/d161add7-85be-4d4a-981f-f49bf353eab1

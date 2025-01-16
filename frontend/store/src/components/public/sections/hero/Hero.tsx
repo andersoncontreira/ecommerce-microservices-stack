@@ -1,27 +1,49 @@
-import couchImg from '../../../../assets/images/couch.png'
+import React from 'react';
+import couchImg from '../../../../assets/images/couch.png';
 import style from './Hero.module.scss';
-const Hero = () => {
-    return (
-        // Start Hero Section
-        <div className={style.hero}>
-            <div className="container">
-                <div className="row justify-content-between">
-                    <div className="col-lg-5">
-                        <div className={style.introExcerpt}>
-                            <h1>Modern Interior <span className="d-block">Design Studio</span></h1>
-                            <p className="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-                            <p><a href="" className="btn btn-secondary me-2">Shop Now</a><a href="#" className="btn btn-white-outline">Explore</a></p>
-                        </div>
+
+interface HeroProps {
+    page: string;
+}
+
+const Hero: React.FC<HeroProps> = ({ page }) => {
+
+    const renderContent = (title: string, description: string) => (
+        <div className="container">
+            <div className="row justify-content-between">
+                <div className="col-lg-5">
+                    <div className={style.introExcerpt}>
+                        <h1>{title}</h1>
+                        <p className="mb-4">{description}</p>
+                        <p>
+                            <a href="/shop" className="btn btn-secondary me-2">Shop Now</a>
+                            <a href="/services" className="btn btn-white-outline">Explore</a>
+                        </p>
                     </div>
-                    <div className="col-lg-7">
-                        <div className="hero-img-wrap">
-                            <img src={couchImg} className="img-fluid" />
-                        </div>
+                </div>
+                <div className="col-lg-7">
+                    <div className={style.heroImgWrap}>
+                        <img src={couchImg} className="img-fluid" alt="Couch" />
                     </div>
                 </div>
             </div>
         </div>
-        // End Hero Section 
+    );
+
+    const content = (() => {
+        switch (page) {
+            case 'contact':
+                return renderContent('Contact', 'Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.');
+            case 'home':
+            default:
+                return renderContent('Modern Interior Design Studio', 'Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.');
+        }
+    })();
+
+    return (
+        <div className={style.hero}>
+            {content}
+        </div>
     );
 }
 
