@@ -1,0 +1,1 @@
+Talvez eu possa deixar algumas das imagens na pasta public

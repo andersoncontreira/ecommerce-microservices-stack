@@ -20,34 +20,23 @@ import '../src/assets/css/style.scss';
 // Components
 import Header from "./components/public/header/Header.tsx";
 import Hero from "./components/public/sections/hero/Hero.tsx";
+import Product from "./components/public/sections/product/Product.tsx";
+
+
+const productData = [
+  { id: 1, title: 'Nordic Chair', price: 50.00, active: true, image: 'images/product-1.png' },
+  { id: 2, title: 'Kruzo Aero Chair', price: 78.00, active: true, image: 'images/product-2.png' },
+  { id: 3, title: 'Ergonomic Chair', price: 43.00, active: true, image: 'images/product-3.png' },
+  { id: 4, title: 'Classic Chair', price: 60.00, active: false, image: 'images/product-4.png' }
+];
 
 function App() {
-  // const [count, setCount] = useState(0)
 
   return (
     <>
         <Header />
         <Hero />
-      {/*<div>*/}
-      {/*  <a href="https://vite.dev" target="_blank">*/}
-      {/*    <img src={viteLogo} className="logo" alt="Vite logo" />*/}
-      {/*  </a>*/}
-      {/*  <a href="https://react.dev" target="_blank">*/}
-      {/*    <img src={reactLogo} className="logo react" alt="React logo" />*/}
-      {/*  </a>*/}
-      {/*</div>*/}
-      {/*<h1>Vite + React</h1>*/}
-      {/*<div className="card">*/}
-      {/*  <button onClick={() => setCount((count) => count + 1)}>*/}
-      {/*    count is {count}*/}
-      {/*  </button>*/}
-      {/*  <p>*/}
-      {/*    Edit <code>src/App.tsx</code> and save to test HMR*/}
-      {/*  </p>*/}
-      {/*</div>*/}
-      {/*<p className="read-the-docs">*/}
-      {/*  Click on the Vite and React logos to learn more*/}
-      {/*</p>*/}
+        <Product products={productData} />
     </>
   )
 }

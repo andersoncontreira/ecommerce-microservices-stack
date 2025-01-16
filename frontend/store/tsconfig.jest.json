@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "baseUrl": "<rootDir>",
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "allowImportingTsExtensions": true,
+    
+  },
+  "include": [
+    "src"
+  ],
+}
