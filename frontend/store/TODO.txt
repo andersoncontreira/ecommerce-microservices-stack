@@ -7,3 +7,9 @@ ou jogar tudo para um branch e refazer os passos que foram feitos aqui
 
 # Auth
 https://github.com/copilot/c/d161add7-85be-4d4a-981f-f49bf353eab1
+
+# Responder
+https://stackoverflow.com/questions/46286437/run-jest-without-code-coverage-constraint
+https://jestjs.io/docs/cli#--coverageboolean
+
+-coverage[=<boolean>

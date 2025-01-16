@@ -15,7 +15,7 @@ const About = () => {
 
     return (
         <>
-            <Hero />
+            <Hero page="about"/>
             <Product products={productData} />
         </>
     );

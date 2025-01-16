@@ -7,3 +7,4 @@
 # architecture
 /architecture/plantuml.jar
 /frontend/store/coverage/
+/frontend/store/test-results/
