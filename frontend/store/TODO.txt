@@ -13,3 +13,6 @@ https://stackoverflow.com/questions/46286437/run-jest-without-code-coverage-cons
 https://jestjs.io/docs/cli#--coverageboolean
 
 -coverage[=<boolean>
+
+
+https://stackoverflow.com/questions/56608763/react-createcontext-usecontext-does-not-survive-between-pages

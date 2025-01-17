@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authenticate } from '../../../../services/AuthService';
 import styles from './LoginForm.module.scss';
+import { AuthContext, useAuth } from "../../../../contexts/AuthContext.tsx";
 
 
 const LoginForm: React.FC = () => {
-
+  // const { login } = useContext(AuthContext);
+  const { isAuthenticated, login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // console.log('login', login);
+  // console.log('LoginForm.isAuthenticated', isAuthenticated);
 
+  // TODO tirar a logica de autenticação do componente
+  // O componente tem que ser burro
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -21,6 +27,9 @@ const LoginForm: React.FC = () => {
     setLoading(false);
 
     if (response.success) {
+      // TODO revisar
+      login();
+
       // Salva o token e os dados do usuário na sessão
       sessionStorage.setItem('token', response.token || '');
       sessionStorage.setItem('user', JSON.stringify(response.user));

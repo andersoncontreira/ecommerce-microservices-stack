@@ -1,11 +1,11 @@
-
 // Components
 import LoginForm from "../../components/public/forms/login/LoginForm.tsx";
-import Header from "../../components/public/header/Header.tsx";
-import Hero from "../../components/public/sections/hero/Hero.tsx";
-import Product from "../../components/public/sections/product/Product.tsx";
+import { useAuth } from "../../contexts/AuthContext.tsx";
 
 const Login = () => {
+    const {isAuthenticated} = useAuth()
+
+    console.log("Login.isAuthenticated", isAuthenticated);
 
     return (
         <>
