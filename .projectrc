@@ -1,0 +1,8 @@
+PROJECT_NAME=ecommerce-architecture
+PROJECT_NAMESPACE=ecommerce
+CLUSTER_NAME=ecommerce-cluster
+
+SHARED_DATABASE_CHART_NAME=ecommerce-database
+SHARED_CACHE_DATABASE_CHART_NAME=ecommerce-cache-database
+
+NETWORK_NAME=ecommerce
