@@ -30,7 +30,7 @@ Este é um projeto que contém uma unidade implantável de amostra para uma apli
         - **Python** ([standard-manager-api-django](https://github.com/andersoncontreira/standard-manager-api-django))
         - **Django**: Framework web Python completo, com ORM, autenticação, painel administrativo e segurança integrados.
       - Nota: Criar template novo
-        - `service-python-fast-api-template`
+        - `service-python-django-template`
 
   - **Autenticação**
     - **auth-service**
